@@ -1,4 +1,5 @@
-var zombies = [
+{
+  "zombies" : [
     {
       "name": "MASTER ZOMBIE",
       "type": "master_zombie",
@@ -23,4 +24,5 @@ var zombies = [
       "hp": 75,
       "damage": 20
     }
-  ];
+  ]
+}

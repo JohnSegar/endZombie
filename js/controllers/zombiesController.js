@@ -1,38 +1,21 @@
 angular.module('endZombie')
   .controller('ZombiesController', ZombiesController);
 
-  function ZombiesController() {
-    this.zombies = [
-      {
-        name: "MASTER ZOMBIE",
-        type: "master_zombie",
-        hp: 150,
-        damage: 12
-      },
-      {
-        name: "SUPER ZOMBIE",
-        type: "super_zombie",
-        hp: 100,
-        damage: 15
-      },
-      {
-        name: "ZOMBIE A",
-        type: "zombie",
-        hp: 75,
-        damage: 20
-      },
-      {
-        name: "ZOMBIE B",
-        type: "zombie",
-        hp: 75,
-        damage: 20
+  ZombiesController.$inject = ['$http', '$state'];
+
+  function ZombiesController($http, $state){
+    var self = this;
+
+    self.getZombies = getZombies;
+
+    function getZombies(){
+      $http
+        .get('/js/zombies.json')
+        .then(function(response){
+          self.data = response.data;
+          console.log(self.data);
+          $state.go('game');
+        });
       }
-    ];
-    return this;
-  }
-
-
-
-function getHomepage(req, res){
-  res.send("You are at the homepage!");
+  return self;
 }
